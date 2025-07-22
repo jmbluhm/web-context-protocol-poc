@@ -30,7 +30,7 @@ export default function Home() {
             <div className="border-l-4 border-red-500 pl-4">
               <h3 className="font-medium text-gray-900">GET /cancel/{'{token}'}</h3>
               <p className="text-sm text-gray-600 mt-1">
-                HTML page for subscription cancellation requests
+                HTML page for subscription cancellation requests (executes cancellation)
               </p>
               <code className="text-xs bg-gray-100 px-2 py-1 rounded mt-2 inline-block">
                 /cancel/YOUR_TOKEN_HERE
@@ -40,7 +40,7 @@ export default function Home() {
             <div className="border-l-4 border-purple-500 pl-4">
               <h3 className="font-medium text-gray-900">GET /change/{'{token}'}</h3>
               <p className="text-sm text-gray-600 mt-1">
-                HTML page for subscription modification requests
+                HTML page for subscription modification requests (executes change)
               </p>
               <code className="text-xs bg-gray-100 px-2 py-1 rounded mt-2 inline-block">
                 /change/YOUR_TOKEN_HERE
