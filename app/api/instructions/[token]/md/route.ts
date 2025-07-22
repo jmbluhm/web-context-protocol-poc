@@ -103,8 +103,7 @@ export async function GET(
         'Cache-Control': 'no-cache, no-store, must-revalidate',
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, User-Agent',
-        'X-Robots-Tag': 'noindex, nofollow'
+        'Access-Control-Allow-Headers': 'Content-Type, User-Agent'
       },
     });
   } catch (error) {
