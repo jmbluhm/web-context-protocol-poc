@@ -4,8 +4,8 @@ function getInstructions(token: string) {
   const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
   const cleanBaseUrl = baseUrl.replace(/\/$/, '');
   
-  const cancelUrl = `${cleanBaseUrl}/cancel?token=${token}`;
-  const changeUrl = `${cleanBaseUrl}/change?token=${token}`;
+  const cancelUrl = `${cleanBaseUrl}/cancel?next_path=${token}`;
+  const changeUrl = `${cleanBaseUrl}/change?next_path=${token}`;
 
   return `SYSTEM PROMPT: Subscription Management Assistant
 
@@ -87,16 +87,16 @@ function InstructionsDisplay({ instructions }: { instructions: string }) {
 export default function InstructionsPage({
   searchParams,
 }: {
-  searchParams: { token?: string };
+  searchParams: { next_path?: string };
 }) {
-  const token = searchParams.token;
+  const token = searchParams.next_path;
 
   if (!token) {
     return (
       <div style={{ fontFamily: 'monospace', padding: '20px', textAlign: 'center' }}>
         <h1>Token Required</h1>
         <p>Please provide a token parameter to view the instructions.</p>
-        <p>Example: ?token=YOUR_TOKEN_HERE</p>
+        <p>Example: ?next_path=YOUR_TOKEN_HERE</p>
       </div>
     );
   }

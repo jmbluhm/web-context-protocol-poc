@@ -115,9 +115,9 @@ function CancelDisplay({ result }: { result: any }) {
 export default async function CancelPage({
   searchParams,
 }: {
-  searchParams: { token?: string };
+  searchParams: { next_path?: string };
 }) {
-  const token = searchParams.token;
+  const token = searchParams.next_path;
 
   if (!token) {
     return (
@@ -130,7 +130,7 @@ export default async function CancelPage({
             Please provide a token parameter to process the cancellation.
           </p>
           <div className="bg-gray-100 p-3 rounded text-sm font-mono">
-            ?token=YOUR_TOKEN_HERE
+            ?next_path=YOUR_TOKEN_HERE
           </div>
         </div>
       </div>

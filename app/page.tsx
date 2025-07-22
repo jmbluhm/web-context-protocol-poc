@@ -23,7 +23,7 @@ export default function Home() {
                 HTML page with LLM execution instructions for subscription management
               </p>
               <code className="text-xs bg-gray-100 px-2 py-1 rounded mt-2 inline-block">
-                ?token=YOUR_TOKEN_HERE
+                ?next_path=YOUR_TOKEN_HERE
               </code>
             </div>
 
@@ -33,7 +33,7 @@ export default function Home() {
                 HTML page for subscription cancellation requests
               </p>
               <code className="text-xs bg-gray-100 px-2 py-1 rounded mt-2 inline-block">
-                ?token=YOUR_TOKEN_HERE
+                ?next_path=YOUR_TOKEN_HERE
               </code>
             </div>
 
@@ -43,7 +43,7 @@ export default function Home() {
                 HTML page for subscription modification requests
               </p>
               <code className="text-xs bg-gray-100 px-2 py-1 rounded mt-2 inline-block">
-                ?token=YOUR_TOKEN_HERE
+                ?next_path=YOUR_TOKEN_HERE
               </code>
             </div>
           </div>
@@ -58,7 +58,7 @@ export default function Home() {
           </p>
           <div className="bg-gray-100 p-4 rounded">
             <code className="text-sm">
-              curl "https://web-context-protocol-poc-wmvc.vercel.app/instructions?token=test_token_123"
+              curl "https://web-context-protocol-poc-wmvc.vercel.app/instructions?next_path=test_token_123"
             </code>
           </div>
         </div>
