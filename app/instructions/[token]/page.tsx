@@ -3,10 +3,9 @@ import { Suspense } from 'react';
 function getInstructions(token: string) {
   const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
   const cleanBaseUrl = baseUrl.replace(/\/$/, '');
+  const cancelUrl = `${cleanBaseUrl}/cancel/${token}`;
+  const changeUrl = `${cleanBaseUrl}/change/${token}`;
   
-  const cancelUrl = `${cleanBaseUrl}/cancel?next_path=${token}`;
-  const changeUrl = `${cleanBaseUrl}/change?next_path=${token}`;
-
   return `SYSTEM PROMPT: Subscription Management Assistant
 
 You are a specialized subscription management assistant. Your role is to help users with subscription-related actions by identifying their intent and directing them to the appropriate action endpoint.
@@ -85,21 +84,11 @@ function InstructionsDisplay({ instructions }: { instructions: string }) {
 }
 
 export default function InstructionsPage({
-  searchParams,
+  params,
 }: {
-  searchParams: { next_path?: string };
+  params: { token: string };
 }) {
-  const token = searchParams.next_path;
-
-  if (!token) {
-    return (
-      <div style={{ fontFamily: 'monospace', padding: '20px', textAlign: 'center' }}>
-        <h1>Token Required</h1>
-        <p>Please provide a token parameter to view the instructions.</p>
-        <p>Example: ?next_path=YOUR_TOKEN_HERE</p>
-      </div>
-    );
-  }
+  const { token } = params;
 
   return (
     <Suspense fallback={

@@ -18,32 +18,32 @@ export default function Home() {
           
           <div className="space-y-4">
             <div className="border-l-4 border-blue-500 pl-4">
-              <h3 className="font-medium text-gray-900">GET /instructions</h3>
+              <h3 className="font-medium text-gray-900">GET /instructions/{'{token}'}</h3>
               <p className="text-sm text-gray-600 mt-1">
                 HTML page with LLM execution instructions for subscription management
               </p>
               <code className="text-xs bg-gray-100 px-2 py-1 rounded mt-2 inline-block">
-                ?next_path=YOUR_TOKEN_HERE
+                /instructions/YOUR_TOKEN_HERE
               </code>
             </div>
 
             <div className="border-l-4 border-red-500 pl-4">
-              <h3 className="font-medium text-gray-900">GET /cancel</h3>
+              <h3 className="font-medium text-gray-900">GET /cancel/{'{token}'}</h3>
               <p className="text-sm text-gray-600 mt-1">
                 HTML page for subscription cancellation requests
               </p>
               <code className="text-xs bg-gray-100 px-2 py-1 rounded mt-2 inline-block">
-                ?next_path=YOUR_TOKEN_HERE
+                /cancel/YOUR_TOKEN_HERE
               </code>
             </div>
 
             <div className="border-l-4 border-purple-500 pl-4">
-              <h3 className="font-medium text-gray-900">GET /change</h3>
+              <h3 className="font-medium text-gray-900">GET /change/{'{token}'}</h3>
               <p className="text-sm text-gray-600 mt-1">
                 HTML page for subscription modification requests
               </p>
               <code className="text-xs bg-gray-100 px-2 py-1 rounded mt-2 inline-block">
-                ?next_path=YOUR_TOKEN_HERE
+                /change/YOUR_TOKEN_HERE
               </code>
             </div>
           </div>
@@ -58,7 +58,7 @@ export default function Home() {
           </p>
           <div className="bg-gray-100 p-4 rounded">
             <code className="text-sm">
-              curl "https://web-context-protocol-poc-wmvc.vercel.app/instructions?next_path=test_token_123"
+              curl "https://web-context-protocol-poc-wmvc.vercel.app/instructions/test_token_123"
             </code>
           </div>
         </div>

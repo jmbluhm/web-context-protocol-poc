@@ -1,69 +1,65 @@
 import { Suspense } from 'react';
 
-async function processChange(token: string) {
-  // Get forwarding URL from environment
+async function processCancel(token: string) {
   const forwardingUrl = process.env.FORWARDING_URL;
-  
   if (forwardingUrl) {
     try {
-      // Construct the forwarding URL with /change path and token parameter
-      const forwardUrl = `${forwardingUrl}/change?token=${token}`;
-      
-      // Forward the request to the external URL
+      const forwardUrl = `${forwardingUrl}/cancel?token=${token}`;
       const forwardResponse = await fetch(forwardUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
+          'X-Forwarded-For': 'subscription-api',
           'User-Agent': 'subscription-api',
         },
         body: JSON.stringify({
-          action: 'change',
+          action: 'cancel',
           token: token,
           timestamp: new Date().toISOString(),
           source: 'subscription-management-api',
         }),
       });
-
+      
       if (forwardResponse.ok) {
-        return {
-          success: true,
-          message: 'Subscription change request forwarded and processed successfully.',
-          forwarded: true
+        return { 
+          success: true, 
+          message: 'Subscription cancellation request forwarded and processed successfully.', 
+          forwarded: true 
         };
       } else {
-        return {
-          success: true,
-          message: 'Subscription change request received but forwarding failed.',
-          forwarded: false
+        return { 
+          success: true, 
+          message: 'Subscription cancellation request received but forwarding failed.', 
+          forwarded: false 
         };
       }
     } catch (error) {
-      return {
-        success: true,
-        message: 'Subscription change request received but forwarding failed.',
-        forwarded: false
+      return { 
+        success: true, 
+        message: 'Subscription cancellation request received but forwarding failed.', 
+        forwarded: false 
       };
     }
   } else {
-    return {
-      success: true,
-      message: 'Subscription change request received and processed successfully.',
-      forwarded: false
+    return { 
+      success: true, 
+      message: 'Subscription cancellation request received and processed successfully.', 
+      forwarded: false 
     };
   }
 }
 
-function ChangeDisplay({ result }: { result: any }) {
+function CancelDisplay({ result }: { result: any }) {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-2xl mx-auto px-4">
         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-          <div className="bg-purple-600 px-6 py-4">
+          <div className="bg-red-600 px-6 py-4">
             <h1 className="text-2xl font-bold text-white">
-              Subscription Change
+              Subscription Cancellation
             </h1>
-            <p className="text-purple-100 mt-1">
+            <p className="text-red-100 mt-1">
               Request Processing Status
             </p>
           </div>
@@ -91,7 +87,7 @@ function ChangeDisplay({ result }: { result: any }) {
               <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
                 <h4 className="font-semibold text-blue-900 mb-2">Forwarding Details:</h4>
                 <p className="text-blue-800 text-sm">
-                  Your change request has been forwarded to the configured webhook endpoint for processing.
+                  Your cancellation request has been forwarded to the configured webhook endpoint for processing.
                 </p>
               </div>
             )}
@@ -99,8 +95,8 @@ function ChangeDisplay({ result }: { result: any }) {
             <div className="mt-6 p-4 bg-gray-50 rounded-lg">
               <h3 className="font-semibold text-gray-900 mb-2">What happens next:</h3>
               <ul className="text-gray-700 space-y-1 text-sm">
-                <li>• Your subscription change request has been received</li>
-                <li>• The request will be processed according to your specifications</li>
+                <li>• Your subscription cancellation request has been received</li>
+                <li>• The request will be processed according to your account settings</li>
                 <li>• You may receive a confirmation email shortly</li>
                 <li>• Contact support if you have any questions</li>
               </ul>
@@ -112,38 +108,20 @@ function ChangeDisplay({ result }: { result: any }) {
   );
 }
 
-export default async function ChangePage({
-  searchParams,
+export default async function CancelPage({
+  params,
 }: {
-  searchParams: { next_path?: string };
+  params: { token: string };
 }) {
-  const token = searchParams.next_path;
-
-  if (!token) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full mx-4">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">
-            Token Required
-          </h1>
-          <p className="text-gray-600 mb-4">
-            Please provide a token parameter to process the change request.
-          </p>
-          <div className="bg-gray-100 p-3 rounded text-sm font-mono">
-            ?next_path=YOUR_TOKEN_HERE
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const { token } = params;
 
   return (
     <Suspense fallback={
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-lg">Processing change request...</div>
+        <div className="text-lg">Processing cancellation request...</div>
       </div>
     }>
-      <ChangeDisplay result={await processChange(token)} />
+      <CancelDisplay result={await processCancel(token)} />
     </Suspense>
   );
 } 
