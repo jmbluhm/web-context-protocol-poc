@@ -18,19 +18,19 @@ export default function Home() {
           
           <div className="space-y-4">
             <div className="border-l-4 border-blue-500 pl-4">
-              <h3 className="font-medium text-gray-900">GET /api/instructions</h3>
+              <h3 className="font-medium text-gray-900">GET /instructions</h3>
               <p className="text-sm text-gray-600 mt-1">
-                Serves LLM execution instructions for subscription management
+                HTML page with LLM execution instructions for subscription management
               </p>
               <code className="text-xs bg-gray-100 px-2 py-1 rounded mt-2 inline-block">
                 ?token=YOUR_TOKEN_HERE
               </code>
             </div>
 
-            <div className="border-l-4 border-green-500 pl-4">
-              <h3 className="font-medium text-gray-900">POST /api/cancel</h3>
+            <div className="border-l-4 border-red-500 pl-4">
+              <h3 className="font-medium text-gray-900">GET /cancel</h3>
               <p className="text-sm text-gray-600 mt-1">
-                Handles subscription cancellation requests
+                HTML page for subscription cancellation requests
               </p>
               <code className="text-xs bg-gray-100 px-2 py-1 rounded mt-2 inline-block">
                 ?token=YOUR_TOKEN_HERE
@@ -38,9 +38,9 @@ export default function Home() {
             </div>
 
             <div className="border-l-4 border-purple-500 pl-4">
-              <h3 className="font-medium text-gray-900">POST /api/change</h3>
+              <h3 className="font-medium text-gray-900">GET /change</h3>
               <p className="text-sm text-gray-600 mt-1">
-                Handles subscription modification requests
+                HTML page for subscription modification requests
               </p>
               <code className="text-xs bg-gray-100 px-2 py-1 rounded mt-2 inline-block">
                 ?token=YOUR_TOKEN_HERE
@@ -58,7 +58,7 @@ export default function Home() {
           </p>
           <div className="bg-gray-100 p-4 rounded">
             <code className="text-sm">
-              curl "http://localhost:3000/api/instructions?token=test_token_123"
+              curl "https://web-context-protocol-poc-wmvc.vercel.app/instructions?token=test_token_123"
             </code>
           </div>
         </div>
