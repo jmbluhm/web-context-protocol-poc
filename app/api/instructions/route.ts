@@ -24,7 +24,10 @@ export async function GET(request: NextRequest) {
     }
 
     // Get base URL from environment or use request origin
-    const baseUrl = process.env.BASE_URL || `${request.nextUrl.protocol}//${request.nextUrl.host}`;
+    let baseUrl = process.env.BASE_URL || `${request.nextUrl.protocol}//${request.nextUrl.host}`;
+    
+    // Remove trailing slash to avoid double slashes in generated URLs
+    baseUrl = baseUrl.replace(/\/$/, '');
 
     // Generate instruction text
     const instructions = generateInstructions(baseUrl, token);
