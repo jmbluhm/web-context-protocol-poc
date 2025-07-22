@@ -27,12 +27,12 @@ export default function Home() {
               </code>
             </div>
             <div className="border-l-4 border-green-500 pl-4">
-              <h3 className="font-medium text-gray-900">GET /api/instructions/{'{token}'}/md</h3>
+              <h3 className="font-medium text-gray-900">GET /api/md/{'{token}'}</h3>
               <p className="text-sm text-gray-600 mt-1">
                 Pure markdown content with Content-Type: text/markdown (recommended for LLMs)
               </p>
               <code className="text-xs bg-gray-100 px-2 py-1 rounded mt-2 inline-block">
-                /api/instructions/YOUR_TOKEN_HERE/md
+                /api/md/YOUR_TOKEN_HERE
               </code>
             </div>
 
@@ -75,7 +75,7 @@ export default function Home() {
             <div>
               <p className="text-xs text-gray-600 mb-1">Markdown version (recommended for LLMs):</p>
               <code className="text-sm">
-                curl "https://web-context-protocol-poc-wmvc.vercel.app/api/instructions/test_token_123/md"
+                curl "https://web-context-protocol-poc-wmvc.vercel.app/api/md/test_token_123"
               </code>
             </div>
           </div>
