@@ -36,8 +36,10 @@ After deployment, set up your environment variables in Vercel:
 
 | Variable | Value | Description |
 |----------|-------|-------------|
-| `BASE_URL` | `https://your-app-name.vercel.app` | Your Vercel app URL |
+| `BASE_URL` | `https://your-app-name.vercel.app` | Your Vercel app URL (replace with your actual domain) |
 | `FORWARDING_URL` | `https://eoodwrpeul173g0.m.pipedream.net` | Your Pipedream webhook URL |
+
+**Important**: Environment variables are set in the Vercel dashboard, not in the `vercel.json` file. The `vercel.json` file only contains deployment configuration.
 
 ## Testing Your Deployed API
 
