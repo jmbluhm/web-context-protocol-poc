@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { NextRequest, NextResponse } from 'next/server';
 
 function getInstructions(token: string) {
   const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
@@ -80,23 +80,34 @@ This system is designed for subscription management only. Do not process request
 The URLs above contain the necessary authentication token and will execute the requested action when accessed via GET request.`;
 }
 
-export default function InstructionsPage({
-  params,
-}: {
-  params: { token: string };
-}) {
-  const { token } = params;
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { token: string } }
+) {
+  try {
+    const { token } = params;
+    
+    if (!token) {
+      return new NextResponse(
+        'Error: Missing token parameter.',
+        { status: 400, headers: { 'Content-Type': 'text/plain' } }
+      );
+    }
 
-  return (
-    <div style={{ 
-      fontFamily: 'monospace', 
-      whiteSpace: 'pre-wrap', 
-      padding: '20px', 
-      maxWidth: '800px', 
-      margin: '0 auto',
-      lineHeight: '1.6'
-    }}>
-      {getInstructions(token)}
-    </div>
-  );
+    const instructions = getInstructions(token);
+    
+    return new NextResponse(instructions, {
+      status: 200,
+      headers: { 
+        'Content-Type': 'text/markdown',
+        'Cache-Control': 'no-cache, no-store, must-revalidate'
+      },
+    });
+  } catch (error) {
+    console.error('Error generating instructions:', error);
+    return new NextResponse(
+      'Internal server error',
+      { status: 500, headers: { 'Content-Type': 'text/plain' } }
+    );
+  }
 } 

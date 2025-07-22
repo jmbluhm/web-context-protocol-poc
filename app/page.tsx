@@ -26,6 +26,15 @@ export default function Home() {
                 /instructions/YOUR_TOKEN_HERE
               </code>
             </div>
+            <div className="border-l-4 border-green-500 pl-4">
+              <h3 className="font-medium text-gray-900">GET /instructions/{'{token}'}/markdown</h3>
+              <p className="text-sm text-gray-600 mt-1">
+                Pure markdown content optimized for LLM consumption
+              </p>
+              <code className="text-xs bg-gray-100 px-2 py-1 rounded mt-2 inline-block">
+                /instructions/YOUR_TOKEN_HERE/markdown
+              </code>
+            </div>
 
             <div className="border-l-4 border-red-500 pl-4">
               <h3 className="font-medium text-gray-900">GET /cancel/{'{token}'}</h3>
@@ -56,10 +65,19 @@ export default function Home() {
           <p className="text-gray-600 mb-4">
             Try accessing the instructions endpoint with a test token:
           </p>
-          <div className="bg-gray-100 p-4 rounded">
-            <code className="text-sm">
-              curl "https://web-context-protocol-poc-wmvc.vercel.app/instructions/test_token_123"
-            </code>
+          <div className="bg-gray-100 p-4 rounded space-y-2">
+            <div>
+              <p className="text-xs text-gray-600 mb-1">HTML version:</p>
+              <code className="text-sm">
+                curl "https://web-context-protocol-poc-wmvc.vercel.app/instructions/test_token_123"
+              </code>
+            </div>
+            <div>
+              <p className="text-xs text-gray-600 mb-1">Markdown version (recommended for LLMs):</p>
+              <code className="text-sm">
+                curl "https://web-context-protocol-poc-wmvc.vercel.app/instructions/test_token_123/markdown"
+              </code>
+            </div>
           </div>
         </div>
       </div>
