@@ -78,35 +78,8 @@ IMPORTANT: This system is designed for subscription management only. Do not proc
 
 function InstructionsDisplay({ instructions }: { instructions: string }) {
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-          <div className="bg-blue-600 px-6 py-4">
-            <h1 className="text-2xl font-bold text-white">
-              Subscription Management Instructions
-            </h1>
-            <p className="text-blue-100 mt-1">
-              LLM System Prompt for Subscription Management
-            </p>
-          </div>
-          
-          <div className="p-6">
-            <div className="bg-gray-100 rounded-lg p-4 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
-              {instructions}
-            </div>
-            
-            <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-              <h3 className="font-semibold text-blue-900 mb-2">How to Use:</h3>
-              <ul className="text-blue-800 space-y-1">
-                <li>• Copy the instructions above for your LLM system prompt</li>
-                <li>• The URLs will automatically include your token parameter</li>
-                <li>• LLM will use these instructions to handle subscription requests</li>
-                <li>• Requests will be forwarded to your configured webhook endpoints</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div style={{ fontFamily: 'monospace', whiteSpace: 'pre-wrap', padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
+      {instructions}
     </div>
   );
 }
@@ -120,26 +93,18 @@ export default function InstructionsPage({
 
   if (!token) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full mx-4">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">
-            Token Required
-          </h1>
-          <p className="text-gray-600 mb-4">
-            Please provide a token parameter to view the instructions.
-          </p>
-          <div className="bg-gray-100 p-3 rounded text-sm font-mono">
-            ?token=YOUR_TOKEN_HERE
-          </div>
-        </div>
+      <div style={{ fontFamily: 'monospace', padding: '20px', textAlign: 'center' }}>
+        <h1>Token Required</h1>
+        <p>Please provide a token parameter to view the instructions.</p>
+        <p>Example: ?token=YOUR_TOKEN_HERE</p>
       </div>
     );
   }
 
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-lg">Loading instructions...</div>
+      <div style={{ fontFamily: 'monospace', padding: '20px', textAlign: 'center' }}>
+        Loading instructions...
       </div>
     }>
       <InstructionsDisplay instructions={getInstructions(token)} />
